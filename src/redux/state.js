@@ -1,4 +1,14 @@
 export default {
+    userlist: [
+        {
+            "username": "StarZlinger",
+            "password": "password"
+        },
+        {
+            "username": "test-user2",
+            "password": "password"
+        }
+    ],
     notes: [
         {
             "id": 1,
@@ -16,5 +26,6 @@ export default {
             "title": "Test Note Again",
             "recipient": "Ethan"
         }
-    ]
+    ],
+    currentUser: []
 }

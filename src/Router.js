@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router'
 import cookie from 'cookie'
 // Pages to import
 import Dashboard from './containers/Dashboard'
-import Login from './components/Login'
+import Login from './containers/Login'
 import Note from './containers/Note'
 
 // Check Auth Function

@@ -3,13 +3,39 @@ import { useNavigate } from "react-router-dom";
 import { TextField, Button, Container } from "@mui/material";
 import cookie from 'cookie'
 
-function Login() {
+function Login(props) {
     const navigate = useNavigate();
-
     const [state, setState] = useState({
         username: "",
         password: "",
     });
+
+    function testLogIn(query, queryP) {
+        for(let i = 0; i < props.users.length; i++) {
+            if(query == props.users[i].username) {
+                if(testPassword(queryP)){
+                    return true
+                }
+                else{
+                    return false
+                }
+            }
+            else {
+                return false
+            }
+        }
+    }
+
+    function testPassword(query) {
+        for(let i = 0; i < props.users.length; i++) {
+            if(query == props.users[i].password) {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+    }
 
     function handleTextChange(e) {
         const { name, value } = e.target;
@@ -23,11 +49,13 @@ function Login() {
 
     function login(e) {
         e.preventDefault();
-        // set cookie here
-        // set loggedIn = true and max-age = 60 (one minute)
-        document.cookie = cookie.serialize("loggedIn", "true", { maxAge: 60000 })
-
-        navigate("/Dashboard");
+        if (testLogIn(state.username, state.password) == true) {
+            document.cookie = cookie.serialize("loggedIn", "true", { maxAge: 60000 })
+            navigate("/Dashboard");
+        }
+        else {
+            navigate("/");
+        }
     };
 
     return (

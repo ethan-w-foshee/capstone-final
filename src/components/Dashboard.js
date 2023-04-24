@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import MakeANote from '../containers/MakeANote'
 
 function Dashboard(props) {
-    console.log(props)
     return (
         <div className="card-container">
             <MakeANote noteTotal={props.notes.length} />
@@ -13,7 +12,6 @@ function Dashboard(props) {
                     <CardContent className="text-gray">
                         <h1>{note.title} </h1>
                         <span>To: {note.recipient}</span><br/>
-                        <span>{note.id}</span>
                     </CardContent>
                     <CardActions style={{ color: 'mediumblue' }}>
                         <Link to={`/note/${note.id}`}>Go to note</Link>

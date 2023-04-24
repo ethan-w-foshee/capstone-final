@@ -24,8 +24,8 @@ function Login() {
     function login(e) {
         e.preventDefault();
         // set cookie here
-        // set loggedIn = true and max-age = 60*1000 (one minute)
-        document.cookie = cookie.serialize("loggedIn", "true", { maxAge: 60 })
+        // set loggedIn = true and max-age = 60 (one minute)
+        document.cookie = cookie.serialize("loggedIn", "true", { maxAge: 60000 })
 
         navigate("/Dashboard");
     };

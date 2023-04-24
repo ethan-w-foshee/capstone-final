@@ -1,15 +1,19 @@
 import React from 'react';
 import Navigation from './components/Navigation.js'
 import Router from './Router.js'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
 import './App.css'
+import store from './redux/store.js';
 
 function App() {
     return (
-        <BrowserRouter>
-            <Navigation />
-            <Router />
-        </BrowserRouter>
+        <Provider store={store}>
+            <HashRouter>
+                <Navigation />
+                <Router />
+            </HashRouter>
+        </Provider>
     );
 }
 

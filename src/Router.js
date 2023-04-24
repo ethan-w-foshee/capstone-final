@@ -1,9 +1,10 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router'
 import cookie from 'cookie'
-
-import Dashboard from './components/Dashboard'
+// Pages to import
+import Dashboard from './containers/Dashboard'
 import Login from './components/Login'
+import Note from './containers/Note'
 
 // Check Auth Function
 function checkAuth() {
@@ -16,7 +17,7 @@ function ProtectedRoute(props) {
     const { component: Component, ...rest } = props;
 
     return (
-        checkAuth() === true ? (< Component {...rest} />) : (<Navigate to="/login" />)
+        checkAuth() === true ? (< Component {...rest} />) : (<Navigate to="/" />)
     )
 }
 
@@ -24,7 +25,8 @@ const Router = () => {
     return (
         <Routes>
             <Route path="/dashboard" element={<ProtectedRoute component={Dashboard} />} />
-            <Route path="/login" element={<Login />}/>
+            <Route path="/" element={<Login />}/>
+            <Route path='/note/:id' element={<Note/>}/>
         </Routes>
     );
 };

@@ -29,7 +29,7 @@ const Navigation = () => {
                             document.cookie = cookie.serialize("loggedIn", null, {
                                 maxAge: 0,
                             });
-                            navigate("/login");
+                            navigate("/");
                         }}
                     >
                         Logout

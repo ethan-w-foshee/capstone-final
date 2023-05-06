@@ -12,8 +12,8 @@ function Login(props) {
 
     function testLogIn(query, queryP) {
         for(let i = 0; i < props.users.length; i++) {
-            if(query == props.users[i].username) {
-                if(testPassword(queryP)){
+            if(query === props.users[i].user_name) {
+                if(testPassword(queryP, props.users)){
                     return true
                 }
                 else{
@@ -26,9 +26,9 @@ function Login(props) {
         }
     }
 
-    function testPassword(query) {
-        for(let i = 0; i < props.users.length; i++) {
-            if(query == props.users[i].password) {
+    function testPassword(query, users) {
+        for(let i = 0; i < users.length; i++) {
+            if(query === users[i].passwords) {
                 return true
             }
             else {
@@ -49,7 +49,7 @@ function Login(props) {
 
     function login(e) {
         e.preventDefault();
-        if (testLogIn(state.username, state.password) == true) {
+        if (testLogIn(state.username, state.password) === true) {
             document.cookie = cookie.serialize("loggedIn", "true", { maxAge: 60000 })
             navigate("/Dashboard");
         }
@@ -83,9 +83,10 @@ function Login(props) {
                         className="login-button"
                         variant="contained"
                         color="primary"
+                        onClick={props.getAllUsers}
                     >
                         Login
-                    </Button>
+                    </Button >
                 </form>
             </Container>
         </div>

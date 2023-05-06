@@ -1,13 +1,20 @@
 {
   "files": {
-    "main.css": "/capstone-final/static/css/main.340e68d4.css",
-    "main.js": "/capstone-final/static/js/main.9df7de26.js",
+    "main.css": "/capstone-final/static/css/main.04a714fe.chunk.css",
+    "main.js": "/capstone-final/static/js/main.e258776a.chunk.js",
+    "main.js.map": "/capstone-final/static/js/main.e258776a.chunk.js.map",
+    "runtime-main.js": "/capstone-final/static/js/runtime-main.2e94fb81.js",
+    "runtime-main.js.map": "/capstone-final/static/js/runtime-main.2e94fb81.js.map",
+    "static/js/2.8d2d4f1a.chunk.js": "/capstone-final/static/js/2.8d2d4f1a.chunk.js",
+    "static/js/2.8d2d4f1a.chunk.js.map": "/capstone-final/static/js/2.8d2d4f1a.chunk.js.map",
     "index.html": "/capstone-final/index.html",
-    "main.340e68d4.css.map": "/capstone-final/static/css/main.340e68d4.css.map",
-    "main.9df7de26.js.map": "/capstone-final/static/js/main.9df7de26.js.map"
+    "static/css/main.04a714fe.chunk.css.map": "/capstone-final/static/css/main.04a714fe.chunk.css.map",
+    "static/js/2.8d2d4f1a.chunk.js.LICENSE.txt": "/capstone-final/static/js/2.8d2d4f1a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/css/main.340e68d4.css",
-    "static/js/main.9df7de26.js"
+    "static/js/runtime-main.2e94fb81.js",
+    "static/js/2.8d2d4f1a.chunk.js",
+    "static/css/main.04a714fe.chunk.css",
+    "static/js/main.e258776a.chunk.js"
   ]
 }

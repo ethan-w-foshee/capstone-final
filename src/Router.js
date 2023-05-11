@@ -5,6 +5,7 @@ import cookie from 'cookie'
 import Dashboard from './containers/Dashboard'
 import Login from './containers/Login'
 import Note from './containers/Note'
+import MakeANote from './containers/MakeANote'
 
 // Check Auth Function
 function checkAuth() {
@@ -24,8 +25,9 @@ function ProtectedRoute(props) {
 const Router = () => {
     return (
         <Routes>
-            <Route path="/dashboard" element={<ProtectedRoute component={Dashboard} />} />
+            <Route path="/dashboard" element={<Dashboard/>} />
             <Route path="/" element={<Login />}/>
+            <Route path="/makeanote" element={<ProtectedRoute component={MakeANote}/>}/>
             <Route path='/note/:id' element={<Note/>}/>
         </Routes>
     );

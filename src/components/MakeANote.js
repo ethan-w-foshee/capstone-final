@@ -2,8 +2,6 @@ import React, { Component, Fragment } from 'react'
 import {
     Button,
     TextField,
-    Dialog,
-    DialogContent,
     DialogTitle
 } from '@mui/material'
 
@@ -49,21 +47,12 @@ class MakeANote extends Component {
             <Fragment>
                 <div style={{ textAlign: 'center' }}>
                     <h1>Write a note:</h1>
-                    <Button
-                        variant="contained"
-                        className="add-note"
-                        onClick={this.toggleDialog}
-                    >
-                        Create
-                    </Button>
                 </div>
-                <div>
-                    <Dialog open={this.state.open} onClose={this.toggleDialog} >
-                        <DialogTitle>Add New Note</DialogTitle>
-                        <DialogContent>
-                            <form
+                <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
+                        <DialogTitle style={{ textAlign: 'center' }}>Add New Note</DialogTitle>
+                            <form 
                                 onSubmit={this.handleSubmit}
-                                style={{ display: 'flex', flexDirection: 'column', width: '350px' }}>
+                                style={{ display: 'flex', flexDirection: 'column', width: '350px', alignSelf:'center' }}>
                                 <TextField
                                     id="title"
                                     placeholder="Title"
@@ -85,8 +74,6 @@ class MakeANote extends Component {
                                 <br />
                                 <Button variant="contained" color="primary" type="submit">Submit</Button>
                             </form>
-                        </DialogContent>
-                    </Dialog>
                 </div>
             </Fragment>
         )

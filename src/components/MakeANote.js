@@ -4,9 +4,9 @@ import {
     TextField,
     DialogTitle
 } from '@mui/material'
+import { useNavigate } from "react-router-dom";
 
 class MakeANote extends Component {
-
     state = {
         open: false,
         title: '',

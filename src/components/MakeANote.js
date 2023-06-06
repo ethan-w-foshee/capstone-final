@@ -1,83 +1,128 @@
-import React, { Component, Fragment } from 'react'
+import React from 'react'
+import { getAllNotes } from '../redux/actions';
+import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
 import {
     Button,
     TextField,
-    DialogTitle
+    DialogTitle,
+    Modal,
+    Box
 } from '@mui/material'
-import { useNavigate } from "react-router-dom";
 
-class MakeANote extends Component {
-    state = {
-        open: false,
-        title: '',
-        note: '',
-        recipient: '',
-    }
+// Basically the CSS
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    color: 'whitesmoke',
+    backgroundColor: '#6a1b9a',
+    border: '2px solid #4a126b',
+    borderRadius: "5px",
+    pt: 2,
+    px: 4,
+    pb: 3,
+};
 
-    toggleDialog = () => this.setState({ open: !this.state.open })
+function MakeANote(props) {
+    const [open, setOpen] = React.useState(false);
+    const [title, setTitle] = React.useState('');
+    const [note, setNote] = React.useState('');
+    const [recipient, setRecipient] = React.useState('');
+    let id = props.notes.length - 1
+    const dispatch = useDispatch()
+    const handleClose = () => {
+        setOpen(false);
+    };
 
-    handleChange = (e) => {
-        const newState = { ...this.state }
-        newState[e.target.id] = e.target.value
-        this.setState(newState)
-    }
+    const handleSubmit = (e) => {
+        id = id + 1
+        e.preventDefault();
+        const newNote = {
+            open: open,
+            title: title,
+            note: note,
+            recipient: recipient,
+            id: id
+        };
+        props.addNote(newNote);
+        setOpen(!open);
+    };
 
-    handleSubmit = (e) => {
-        e.preventDefault()
-        const note = { ...this.state }
-        note.id = this.props.noteTotal + 1
-        delete note.open
-        console.log("THE NOTE", note)
-        this.props.addNote(note)
-        this.setState({ open: false })
-    }
-
-    componentDidUpdate = (prevProps, prevState) => {
-        if (prevState.open !== this.state.open) {
-            this.setState({
-                note: '',
-                title: '',
-                recipient: '',
-            })
+    const handleChange = (event) => {
+        if (event.target.id === 'title') {
+            setTitle(event.target.value);
+        } else if (event.target.id === 'note') {
+            setNote(event.target.value);
+        } else if (event.target.id === 'recipient') {
+            setRecipient(event.target.value);
         }
-    }
+    };
 
-    render() {
-        return (
-            <Fragment>
-                <div style={{ textAlign: 'center' }}>
-                    <h1>Write a note:</h1>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
-                        <DialogTitle style={{ textAlign: 'center' }}>Add New Note</DialogTitle>
-                            <form 
-                                onSubmit={this.handleSubmit}
-                                style={{ display: 'flex', flexDirection: 'column', width: '350px', alignSelf:'center' }}>
-                                <TextField
-                                    id="title"
-                                    placeholder="Title"
-                                    value={this.state.Title}
-                                    onChange={this.handleChange}
-                                    required />
-                                <TextField
-                                    id="note"
-                                    placeholder="Note"
-                                    value={this.state.Note}
-                                    onChange={this.handleChange}
-                                    required />
-                                <TextField
-                                    id="recipient"
-                                    placeholder="Recipient"
-                                    value={this.state.Recipient}
-                                    onChange={this.handleChange}
-                                    required />
-                                <br />
-                                <Button variant="contained" color="primary" type="submit">Submit</Button>
-                            </form>
-                </div>
-            </Fragment>
-        )
-    }
+    React.useEffect(() => {
+        async function fetchData() {
+            await dispatch(getAllNotes())
+        }
+        fetchData()
+        if (open !== open) {
+            setTitle('');
+            setNote('');
+            setRecipient('');
+        }
+    });
+
+    return (
+        <>
+            <div style={{ textAlign: 'center' }}>
+                <h1>Write a note:</h1>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
+                <DialogTitle style={{ textAlign: 'center' }}>Add New Note</DialogTitle>
+                <form
+                    onSubmit={handleSubmit}
+                    style={{ display: 'flex', flexDirection: 'column', width: '350px', alignSelf: 'center' }}>
+                    <TextField
+                        id="title"
+                        placeholder="Title"
+                        value={title}
+                        onChange={handleChange}
+                        required />
+                    <TextField
+                        id="note"
+                        placeholder="Note"
+                        value={note}
+                        onChange={handleChange}
+                        required />
+                    <TextField
+                        id="recipient"
+                        placeholder="Recipient"
+                        value={recipient}
+                        onChange={handleChange}
+                        required />
+                    <br />
+                    <Button style={{ color: 'white', backgroundColor: '#bb33ff' }} variant='contained' type='submit'>
+                        Submit
+                    </Button>
+
+                </form>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="parent-modal-title"
+                    aria-describedby="u-or-p-incorrect"
+                >
+                    <Box sx={{ ...style, width: 400 }}>
+                        <h2 id="parent-modal-title">Note Created!</h2>
+                        <Button style={{ color: 'white', backgroundColor: '#bb33ff' }} variant='contained'>
+                        <Link to={'/Dashboard'}>See the dashboard</Link>
+                    </Button>
+                    </Box>
+                </Modal>
+            </div>
+        </>
+    );
 }
 
 export default MakeANote

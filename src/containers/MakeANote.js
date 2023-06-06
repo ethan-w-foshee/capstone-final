@@ -2,6 +2,11 @@ import { connect } from "react-redux";
 import MakeANote from "../components/MakeANote";
 import { addNote } from "../redux/actions";
 
+const mapStateToProps = (state) => {
+    return {
+        notes: state.notes
+    }
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -9,4 +14,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(MakeANote);
+export default connect(mapStateToProps, mapDispatchToProps)(MakeANote);

@@ -1,8 +1,11 @@
 import axios from "axios"
+require('dotenv').config()
+
+const URL = process.env.AXIOSURL
 
 export const addNote = (thisNote) => {
     return (dispatch) => {
-        axios.post(`http://localhost:4000/notes`, {
+        axios.post(`${URL}/notes`, {
             id: thisNote.id,
             note: thisNote.note,
             title: thisNote.title,
@@ -28,7 +31,7 @@ export const addNote = (thisNote) => {
 
 export const addUser = (username, password, id) => {
     return (dispatch) => {
-        axios.post(`http://localhost:4000/users`, {
+        axios.post(`${URL}/users`, {
             username: username,
             password: password,
             id: id
@@ -45,7 +48,7 @@ export const addUser = (username, password, id) => {
 
 export const getAllNotes = () => {
     return (dispatch) => {
-        axios.get(`http://localhost:4000/notes`)
+        axios.get(`${URL}/notes`)
             .then(response => {
                 dispatch({
                     type: 'GETALLNOTES',
@@ -57,7 +60,7 @@ export const getAllNotes = () => {
 
 export const getAllUsers = () => {
     return (dispatch) => {
-        axios.get(`http://localhost:4000/users`)
+        axios.get(`${URL}/users`)
             .then(response => {
                 dispatch({
                     type: 'GETALLUSERS',
@@ -69,7 +72,7 @@ export const getAllUsers = () => {
 
 export const deleteNote = (id) => {
     return (dispatch) => {
-        axios.delete(`http://localhost:4000/notes/${id}`)
+        axios.delete(`${URL}/notes/${id}`)
         .then(response => {
             dispatch({
                 type: 'DELETE_SUCCESS',

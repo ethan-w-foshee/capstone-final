@@ -1,5 +1,4 @@
 export default {
     users: [],
-    notes: [],
-    currentUser: []
+    notes: []
 }

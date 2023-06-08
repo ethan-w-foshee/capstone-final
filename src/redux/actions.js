@@ -6,7 +6,10 @@ export const addNote = (thisNote) => {
             id: thisNote.id,
             note: thisNote.note,
             title: thisNote.title,
-            recipient: thisNote.recipient
+            recipient: thisNote.recipient,
+            author: thisNote.author,
+            doc: thisNote.doc,
+            isHidden: 0
         })
             .then(response => {
                 dispatch({
@@ -30,12 +33,7 @@ export const addUser = (username, password, id) => {
             password: password,
             id: id
         })
-            .then(response => {
-                dispatch({
-                    type: 'CREATE_SUCCESS',
-                    username: response.data
-                })
-            })
+            
             .catch(error => {
                 dispatch({
                     type: 'CREATE_ERROR',
@@ -66,5 +64,17 @@ export const getAllUsers = () => {
                     value: response.data
                 })
             })
+    }
+}
+
+export const deleteNote = (id) => {
+    return (dispatch) => {
+        axios.delete(`http://localhost:4000/notes/${id}`)
+        .then(response => {
+            dispatch({
+                type: 'DELETE_SUCCESS',
+                username: response.data
+            })
+        })
     }
 }

@@ -4,13 +4,13 @@ import { getAllUsers } from '../redux/actions'
 
 const mapStateToProps = (state) => {
     return {
-        users: state.users
+        users: state.users,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAllUsers: () => dispatch(getAllUsers())
+        getAllUsers: () => dispatch(getAllUsers()),
     }
 }
 

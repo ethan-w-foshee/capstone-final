@@ -5,7 +5,7 @@ import cookie from 'cookie'
 // Pages to import
 import Dashboard from './containers/Dashboard'
 import Login from './containers/Login'
-import Note from './containers/Note'
+// import Note from './containers/Note'
 import MakeANote from './containers/MakeANote'
 
 // Check Auth Function
@@ -29,7 +29,7 @@ const Router = () => {
             <Route path="/dashboard" element={<Dashboard/>} />
             <Route path="/" element={<Login />}/>
             <Route path="/makeanote" element={<ProtectedRoute component={MakeANote}/>}/>
-            <Route path='/note/:id' element={<Note/>}/>
+            {/* <Route path='/note/:id' element={<Note/>}/> */}
         </Routes>
     );
 };

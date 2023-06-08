@@ -9,6 +9,7 @@ import {
     Modal,
     Box
 } from '@mui/material'
+import cookie from 'cookie'
 
 // Basically the CSS
 const style = {
@@ -27,6 +28,8 @@ const style = {
 };
 
 function MakeANote(props) {
+    const cookies = cookie.parse(document.cookie)
+    let author = cookies["username"]
     const [open, setOpen] = React.useState(false);
     const [title, setTitle] = React.useState('');
     const [note, setNote] = React.useState('');
@@ -40,12 +43,14 @@ function MakeANote(props) {
     const handleSubmit = (e) => {
         id = id + 1
         e.preventDefault();
+        let doc = require('moment')().format('YYYY-MM-DD HH:mm:ss');
         const newNote = {
-            open: open,
             title: title,
+            doc: doc,
             note: note,
             recipient: recipient,
-            id: id
+            id: id,
+            author: author
         };
         props.addNote(newNote);
         setOpen(!open);

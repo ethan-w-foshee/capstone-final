@@ -29,7 +29,8 @@ function Login(props) {
     const navigate = useNavigate();
     const [state, setState] = useState({
         username: "",
-        password: ""
+        password: "",
+        currentUser: ""
     });
 
     useEffect(() => {
@@ -80,6 +81,7 @@ function Login(props) {
         e.preventDefault();
         if (testLogIn(state.username, state.password) === true) {
             document.cookie = cookie.serialize("loggedIn", "true", { maxAge: 6000 })
+            document.cookie = cookie.serialize("username", `${state.username}`, { maxAge: 6000 })
             navigate("/Dashboard");
         }
         else {

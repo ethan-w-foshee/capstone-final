@@ -29,9 +29,12 @@ const Navigation = () => {
                                 document.cookie = cookie.serialize("loggedIn", null, {
                                     maxAge: 0,
                                 });
+                                document.cookie = cookie.serialize("username", null, {
+                                    maxAge: 0,
+                                });
                                 navigate("/");
                             }}>
-                            Logout</li> :
+                            Logout of {cookies["username"]}</li> :
                         <li onClick={() => { navigate("/"); }} className="nav-list-item">
                             Login </li>}
                 </ul>

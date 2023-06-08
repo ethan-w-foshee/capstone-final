@@ -9,7 +9,7 @@ const users = (state = [], action) => {
                 error: null
             };
         case "GETALLUSERS":
-            const users = [...state]
+            // const users = [...state]
             return action.value
         default:
             return state
@@ -22,16 +22,13 @@ const notes = (state = [], action) => {
             return {
                 ...state,
                 notes: [...state.notes, action.note],
-                error: null
             };
         case "GETALLNOTES":
-            const notes = [...state]
+            // const notes = [...state]
             return action.value
         default:
             return state
     }
 }
 
-const currentUser = (state = null) => state
-
-export default combineReducers({ users, notes, currentUser })
+export default combineReducers({ users, notes })

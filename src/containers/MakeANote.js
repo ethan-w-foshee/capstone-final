@@ -4,7 +4,7 @@ import { addNote } from "../redux/actions";
 
 const mapStateToProps = (state) => {
     return {
-        notes: state.notes
+        notes: state.notes,
     }
 }
 

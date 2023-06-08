@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import cookie from 'cookie'
 import { useNavigate } from "react-router-dom";
 import { TextField, Button, Modal, Box, Dialog, DialogTitle } from "@mui/material";
 
@@ -36,11 +37,12 @@ function CreateAccount(props) {
     const [conPass, setConPass] = useState("")
 
     function createAcc(e) {
-        console.log(e)
         e.preventDefault()
         if (username === conUsername && password === conPass) {
-            navigate("/Dashboard")
             props.addUser(username, password, id)
+            document.cookie = cookie.serialize("loggedIn", "true", { maxAge: 6000 })
+            document.cookie = cookie.serialize("username", `${username}`, { maxAge: 6000 })
+            navigate("/Dashboard");
         }
         else {
             popHandleOpen()
@@ -56,7 +58,6 @@ function CreateAccount(props) {
     };
 
     const popOpen = Boolean(anchorEl);
-    const popId = popOpen ? 'simple-popover' : undefined;
 
     return (
         <div>
@@ -120,7 +121,7 @@ function CreateAccount(props) {
                             aria-describedby="alert-dialog-description"
                         >
                             <DialogTitle id="alert-dialog-title">
-                                {"Usernames and/or passwords don't match"}
+                                {"Username or password does not match."}
                             </DialogTitle>
                         </Dialog>
                     </form>

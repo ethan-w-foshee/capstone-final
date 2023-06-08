@@ -1,16 +1,17 @@
 import Dashboard from '../components/Dashboard'
 import { connect } from 'react-redux'
-import { getAllNotes } from '../redux/actions'
+import { getAllNotes, deleteNote } from '../redux/actions'
 
 const mapStateToProps = (state) => {
     return {
-        notes: state.notes
+        notes: state.notes,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAllNotes: () => dispatch(getAllNotes())
+        getAllNotes: () => dispatch(getAllNotes()),
+        deleteNote: (id) => dispatch(deleteNote(id))
     }
 }
 
